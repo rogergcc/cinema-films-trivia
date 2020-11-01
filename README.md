@@ -21,7 +21,7 @@ node-themoviedb
   ```
 .env
 ```
-API_KEY=516adf1e1567058f8ecbf30bf2eb9378
+API_KEY=TMDB_KEY
 HOST=http://localhost
 PORT=3000
 ```
