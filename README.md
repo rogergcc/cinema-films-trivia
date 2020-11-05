@@ -9,20 +9,20 @@ body-parser,
 dotenv,
 express,
 node-themoviedb
-
+pug
 
 # Getting Started
 1. Clone repo and install npm nodejs git.
 2. npm i
 3. Run script:
 
-  ```
-    npm run dev
-  ```
+```
+  npm run dev
+```
 .env
 ```
-API_KEY=TMDB_KEY
-HOST=http://localhost
-PORT=3000
+  API_KEY=TMDB_KEY
+  HOST=http://localhost
+  PORT=3000
 ```
 

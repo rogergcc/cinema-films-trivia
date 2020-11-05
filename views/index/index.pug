@@ -1,0 +1,36 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  // displays site properly based on user's device
+  link(rel='icon' type='image/png' sizes='32x32' href='./images/favicon-32x32.png')
+  //- title FRONT FILMS
+  title #{titulo} | Index
+  link(rel='stylesheet', href='./css/css2.css')
+  link(rel='stylesheet' type='text/css' href='./css/generics.css')
+  
+header.header
+  h1.title FILMS PUG
+  
+ul.container
+  each movie in movies
+    li.item
+      img(src=movie.poster_path, alt="./images/progress.gif", class="")
+      strong 
+        movie.title
+      span
+        movie.release_date
+        
+
+
+
+            //- h2=viaje.titulo
+            //-             p 
+            //-                 i.fas.fa-calendar-alt
+            //-                 |  #{viaje.fecha_ida} - #{viaje.fecha_vuelta}
+            //-             p 
+            //-                 i.fas.fa-dollar-sign
+            //-                 |  #{viaje.precio}
+            //-             p=viaje.descripcion.substring(0, 100)
+            //-             a(href=`viajes/${viaje.id}`, class="btn btn-success btn-block") Más información
+        

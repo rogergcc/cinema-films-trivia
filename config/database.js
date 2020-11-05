@@ -1,14 +1,6 @@
 const mongoose = require('mongoose');
 const CONFIG = require('./config');
-//https://ed.team/comunidad/por-si-les-sale-el-siguiente-advertencia-en-la-conexion-mongodb
-//https://mongoosejs.com/docs/deprecations.html
 
-//https://www.developerro.com/2019/03/12/jwt-api-authentication/
-//https://enmilocalfunciona.io/construyendo-una-web-api-rest-segura-con-json-web-token-en-net-parte-i/
-//https://blog.ezteven.com/tech/2019/05/30/utiliza-jwt-con-laravel-para-apis.html
-
-//retrofit refresh token 
-//https://www.woolha.com/tutorials/android-retrofit-2-refresh-access-token-with-okhttpclient-and-authenticator
 
 // const options = {
 //     keepAlive: 1,

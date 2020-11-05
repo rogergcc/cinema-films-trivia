@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
 
-  <title>FRONT FILMS</title>
+    <title>FRONT FILMS</title>
 
-  <!-- <link rel="shortcut icon" href="https://avatars0.githubusercontent.com/u/18008332?v=4" type="image/x-icon"> -->
-  <link href="./css/css2.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="./css/generics.css">
+    <link href="./css/css2.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/generics.css">
+  </head>
 
+  <body>
 
-  <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-
-
-</head>
-
-<body>
-
-
-
-  <header class="header">
-    <h1 class="title-h3 bold-400 padding-bottom-20">FILMS PROJECT GAME</h1>
-
+    <header class="header">
+      <h1 class="title">FILMS PROJECT GAME</h1>
 
     
-</body>
+
+      <ul>
+        <% movies.forEach(function(movie) { %>
+            <li>
+                
+                <img src=<%= movie.poster_path %> alt=<%= movie.backdrop_path %>>
+                <strong><%= movie.title %></strong>
+                <span> <%= movie.release_date %></span>
+            </li>
+        <% }); %>
+      </ul>
+
+  </body>
 
 </html>

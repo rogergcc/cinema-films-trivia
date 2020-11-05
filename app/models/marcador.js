@@ -1,5 +1,5 @@
 
-
+//Sample
 class Marcador {
 
     constructor(id, lng, lat) {
