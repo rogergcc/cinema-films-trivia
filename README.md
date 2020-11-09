@@ -8,7 +8,7 @@ Nodejs,
 body-parser,
 dotenv,
 express,
-node-themoviedb
+node-themoviedb,
 pug
 
 # Getting Started
