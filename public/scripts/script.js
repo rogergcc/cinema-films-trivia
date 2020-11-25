@@ -44,7 +44,7 @@ function mapCards(movies){
           <div class="back">
             <div>
               <div class="release_date">${title} <span>(${movie.release_year})</span></div>
-              <div class="movie_gens">${movie.genre_ids}</div>
+              <div class="movie_gens">${movie.genres}</div>
               <div>⭐${movie.vote_average}</div>
               
               <p class="overview">${movie.overview}</p>
