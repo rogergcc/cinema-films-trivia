@@ -10,12 +10,26 @@ head
   link(rel='stylesheet' type='text/css' href='./css/generics.css')
   link(href='https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&family=Poppins:wght@300;400;700&display=swap' rel='stylesheet')
   
-
 #spinner.show
 
 .content
-  h1.heading API FILMS 
+  h1.heading FILMS
 
-
-script(src='./scripts/script.js')
-
+  each movie in movies
+      
+    .card
+      .frontWeb(style=`background-image: url(${movie.poster_path});`)  
+        p=movie.title
+      .back
+        div
+          .release_date=`${movie.title} `
+            span= movie.release_year
+          .movie_gens=movie.genres
+          div=`⭐${movie.vote_average}`
+          p.overview=movie.overview
+          a.button(target='_blank' href=`https://www.themoviedb.org/movie/${movie.id}`) Details
+      
+  
+  if movies!=null 
+    #spinner.show
+  else
