@@ -86,7 +86,7 @@ const getMovieForApi = async (lista) => {
         datamovie.poster_path,
         datamovie.backdrop_path,
         datamovie.release_date,
-        datamovie.genres,
+        datamovie.genre_ids,
         datamovie.overview,
         datamovie.vote_average
       );
