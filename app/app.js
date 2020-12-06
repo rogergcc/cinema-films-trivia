@@ -21,6 +21,16 @@ App.use(express.static(path.join(__dirname, "../public")));
 App.use(express.json());
 App.use(express.urlencoded({ extended: false }));
 
+
+const Product = require('./routes/productRoutes');
+const Player = require('./routes/playerLeaderboardRoutes');
+
+
+App.use('/api/v1/product', Product);
+App.use('/api/v1/player', Player);
+
+
+
 App.set("view engine", "pug");
 
 const config = configApp[App.get("env")];

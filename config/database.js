@@ -1,13 +1,10 @@
 const mongoose = require('mongoose');
 const CONFIG = require('./config');
-
-
 // const options = {
 //     keepAlive: 1,
 //     useUnifiedTopology: true,
 //     useNewUrlParser: true,
 //   };
-
 module.exports = {
     connection: null,
     connect: function(){
@@ -19,13 +16,10 @@ module.exports = {
             .set("useCreateIndex", true)
             .connect(CONFIG.DB, { 
                 useNewUrlParser: true ,
-                useUnifiedTopology: true
-                
+                useUnifiedTopology: true    
             })
 
-            //.connect(process.env.URL_DB, { useNewUrlParser: true })
-            
-            
+            //.connect(process.env.URL_DB, { useNewUrlParser: true })   
             .then(connection => {
                 this.connection = connection;
                 console.log('Conexion a Base de Datos Exitosa');

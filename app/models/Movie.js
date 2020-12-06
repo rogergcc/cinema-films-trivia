@@ -1,6 +1,6 @@
 "use strict";
 
-const GeneroMovie = require("./GeneroPelicula");
+
 
 class Movie {
   constructor(id,title, poster_path, backdrop_path, release_date, genre_ids,overview,vote_average) {
