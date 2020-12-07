@@ -1,28 +1,25 @@
 const mongoose = require('mongoose');
 const CONFIG = require('./config');
+const colors = require('colors');
 // const options = {
 //     keepAlive: 1,
 //     useUnifiedTopology: true,
 //     useNewUrlParser: true,
 //   };
-module.exports = {
-    connection: null,
-    connect: function(){
-        if(this.connection) return this.connection;
-       
-        return mongoose
-            //.connect(CONFIG.DB)
-            
-            .set("useCreateIndex", true)
-            .connect(CONFIG.DB, { 
-                useNewUrlParser: true ,
-                useUnifiedTopology: true    
-            })
 
-            //.connect(process.env.URL_DB, { useNewUrlParser: true })   
-            .then(connection => {
-                this.connection = connection;
-                console.log('Conexion a Base de Datos Exitosa');
-            }).catch(error => console.log(error));
-    }
-}
+const DBconnection = async () => {
+    const conn = await mongoose
+      .connect(CONFIG.MONGO_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false
+      })
+      .catch(err => {
+        console.log(`For some reasons we couldn't connect to the DB`.red, err)
+      })
+  
+    console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline.bold)
+  }
+  
+  module.exports = DBconnection

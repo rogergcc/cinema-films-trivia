@@ -10,6 +10,14 @@ const configApp = require("../config/");
 const Movie = require("./models/Movie");
 //https://www.npmjs.com/package/node-themoviedb
 const MovieDB = require("node-themoviedb");
+
+
+const ProductRoute = require('./routes/productRoutes');
+const PlayerRoute = require('./routes/playerLeaderboardRoutes');
+
+const colors = require('colors')
+
+
 // ES6 Style
 // import MovieDB from 'node-themoviedb';
 
@@ -22,16 +30,22 @@ App.use(express.json());
 App.use(express.urlencoded({ extended: false }));
 
 
-const Product = require('./routes/productRoutes');
-const Player = require('./routes/playerLeaderboardRoutes');
+// ejecutar el bobyParser para poder enviar en formato json desde un Formulario en en sitio web asi aqui
+App.use(bodyParser.urlencoded({ extended: true }));
 
-
-App.use('/api/v1/product', Product);
-App.use('/api/v1/player', Player);
-
-
+App.use(cors());
 
 App.set("view engine", "pug");
+
+const versionOne = (routeName) => `/api/v1/${routeName}`
+
+App.use(versionOne('product'), ProductRoute)
+App.use(versionOne('player'), PlayerRoute)
+
+
+
+
+
 
 const config = configApp[App.get("env")];
 App.locals.titulo = config.nombresitio;
@@ -46,10 +60,7 @@ App.use((req, res, next) => {
 
   return next();
 });
-// ejecutar el bobyParser para poder enviar en formato json desde un Formulario en en sitio web asi aqui
-App.use(bodyParser.urlencoded({ extended: true }));
 
-App.use(cors());
 
 // App.get("/", async (req, res, next) => {
 //   const lista = await fetchDataMoviesFromList();
