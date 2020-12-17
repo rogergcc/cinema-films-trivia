@@ -7,7 +7,7 @@ module.exports.createPlayer = async (req, res) => {
 
     const playerExisting = await playerLeaderboardService.checkPlayerAlreadyExisting(req.body.playerId);
     
-    //if product name already exists
+    //if PLAYER ID name already exists
     if(playerExisting){
 
       const responseFromService = await playerLeaderboardService.updatePlayer({

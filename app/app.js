@@ -11,12 +11,10 @@ const Movie = require("./models/Movie");
 //https://www.npmjs.com/package/node-themoviedb
 const MovieDB = require("node-themoviedb");
 
+const ProductRoute = require("./routes/productRoutes");
+const PlayerRoute = require("./routes/playerLeaderboardRoutes");
 
-const ProductRoute = require('./routes/productRoutes');
-const PlayerRoute = require('./routes/playerLeaderboardRoutes');
-
-const colors = require('colors')
-
+const colors = require("colors");
 
 // ES6 Style
 // import MovieDB from 'node-themoviedb';
@@ -29,7 +27,6 @@ App.use(express.static(path.join(__dirname, "../public")));
 App.use(express.json());
 App.use(express.urlencoded({ extended: false }));
 
-
 // ejecutar el bobyParser para poder enviar en formato json desde un Formulario en en sitio web asi aqui
 App.use(bodyParser.urlencoded({ extended: true }));
 
@@ -37,15 +34,10 @@ App.use(cors());
 
 App.set("view engine", "pug");
 
-const versionOne = (routeName) => `/api/v1/${routeName}`
+const versionOne = (routeName) => `/api/v1/${routeName}`;
 
-App.use(versionOne('product'), ProductRoute)
-App.use(versionOne('player'), PlayerRoute)
-
-
-
-
-
+App.use(versionOne("product"), ProductRoute);
+App.use(versionOne("player"), PlayerRoute);
 
 const config = configApp[App.get("env")];
 App.locals.titulo = config.nombresitio;
@@ -60,7 +52,6 @@ App.use((req, res, next) => {
 
   return next();
 });
-
 
 // App.get("/", async (req, res, next) => {
 //   const lista = await fetchDataMoviesFromList();
@@ -79,14 +70,13 @@ App.use((req, res, next) => {
 //   res.render("index")
 // });
 
-App.get('/', async (req, res, next) => {
-  res.render('index')
-})
-
+App.get("/", async (req, res, next) => {
+  res.render("index");
+});
 
 App.get("/api/v1/getMovies", async (req, res, next) => {
   const data = await fetchDataMoviesFromList();
-
+  //console.log(data);
   let movies = await getMovieForApi(data);
 
   res.json(movies);
@@ -95,7 +85,7 @@ App.get("/api/v1/getMovies", async (req, res, next) => {
 const getMovieForApi = async (lista) => {
   try {
     let movies = lista.data.items;
-
+    console.log(movies);
     let listmovies = [];
     const size = movies.length;
 
