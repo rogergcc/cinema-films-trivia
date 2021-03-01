@@ -4,7 +4,7 @@ const colors = require('colors')
 const dotenv = require('dotenv')
 
 // Load env vars
-dotenv.config({  })
+dotenv.config({ })
 
 const Player = require('./app/models/playerLeaderboardModel')
 
