@@ -1,7 +1,23 @@
 :root {
   --maincolor: #252525;
-  --secondcolor: #ffcf40;
+  --secondcolor: #FE8000;
   --scrollbar: #999999;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #000000;
+    --back-color: #191919;
+    --foreground-color: #EFBD76;
+  }
+}
+/* 1a9be6 */
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-color: #f8f8f8d5;
+    --foreground-color: #111;
+    --back-color: #eeeeee;
+  }
 }
 
 *,
@@ -22,7 +38,8 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  background-color: #ecf0f9;
+  background-color: var(--background-color);
+  color: var(--foreground-color);
   background-attachment: fixed;
 }
 
@@ -108,7 +125,7 @@ body {
   position: absolute;
   width: 60px;
   height: 4px;
-  background: linear-gradient(135deg, #1a9be6, #1a57e6);
+  background: linear-gradient(135deg, var(--secondcolor), var(--foreground-color));
   bottom: 0;
 }
 
@@ -262,7 +279,7 @@ p.movie__overview {
 }
 
 .back {
-  background: #fff;
+  background:  var(--back-color);
   -webkit-transform: rotateY(-180deg);
   transform: rotateY(-180deg);
   padding: 0 2em;
@@ -271,12 +288,21 @@ p.movie__overview {
   -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
 }
+
+.card:hover .button {
+  visibility: visible;
+}
+
 @media screen and (max-width: 800px) {
   .card:hover .back {
     -webkit-transform: rotateY(-180deg);
     transform: rotateY(-180deg);
   }
+  .card:hover .button {
+    visibility: hidden;
+  }
 }
+
 .card:nth-child(even) .back {
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
@@ -285,6 +311,7 @@ p.movie__overview {
   -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
 }
+
 @media screen and (max-width: 800px) {
   .card:nth-child(even):hover .back {
     -webkit-transform: rotateY(180deg);
@@ -304,13 +331,15 @@ p.movie__overview {
   padding: 0.5em 1em;
   border-radius: 100px;
   font: inherit;
-  background: linear-gradient(135deg, #1a9be6, #1a57e6);
+  background: linear-gradient(135deg, var(--secondcolor), var(--secondcolor));
   border: none;
   position: relative;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   -webkit-transition: 300ms ease;
   transition: 300ms ease;
+  
+  visibility: hidden;
 }
 .button:before {
   -webkit-transition: 300ms ease;
@@ -396,7 +425,8 @@ p.movie__overview {
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 400;
-  color: rgb(5, 3, 3);
+  background-color: var(--secondcolor);
+  color:  var(--back-color);
 
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
@@ -408,7 +438,9 @@ p.movie__overview {
 .filter-generes input[type="radio"]:checked + label {
   /* [type="radio"]:checked + label:after,
 [type="radio"]:not(:checked) + label:after{ */
-  background-color: #e74c3c;
+  background-color:var(--background-color);
+  color: var(--foreground-color);
+  border: var(--secondcolor) 1px solid;
 }
 /* [type="radio"]:checked + label:after,
 [type="radio"]:not(:checked) + label:after{ */
