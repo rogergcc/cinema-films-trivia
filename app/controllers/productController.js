@@ -8,9 +8,6 @@ module.exports.createProduct = async (req, res) => {
 
     // if product name already exists
     if (productNameExisting) {
-      // response.status = 200;
-      // response.message = 'Product already exists';
-      // response.body = productNameExisting;
 
       const responseFromService = await productService.updateProduct({
         id: productNameExisting._id,
