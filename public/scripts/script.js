@@ -2,8 +2,8 @@ const spinner = document.querySelector('#spinner')
 const card = document.querySelector('.content')
 const filterGeneres = document.getElementById('filter__generes')
 
-const URL_API = 'https://cinema-movie-trivia.herokuapp.com/api/v1/getMovies'
-// const URL_API = 'http://localhost:3000/api/v1/getMovies';
+// const URL_API = 'https://cinema-movie-trivia.herokuapp.com/api/v1/getMovies'
+const URL_API = 'http://localhost:3001/api/v1/getMovies'
 
 let genresFromListMovies = []
 let genresFilterList
