@@ -6,20 +6,23 @@ const colors = require('colors')
 //     useUnifiedTopology: true,
 //     useNewUrlParser: true,
 //   };
-
 const DBconnection = async () => {
-  const conn = await mongoose
-    .connect(CONFIG.MONGO_URI, {
+  try {
+    const conn = await mongoose.connect(CONFIG.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
       useFindAndModify: false
     })
-    .catch(err => {
-      console.log('For some reasons we couldn\'t connect to the DB'.red, err)
-    })
 
-  console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline.bold)
+    if (conn) {
+      console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline.bold)
+    } else {
+      console.log('Failed to connect to MongoDB'.red)
+    }
+  } catch (error) {
+    console.log('Error connecting to MongoDB'.red, error)
+  }
 }
 
 module.exports = DBconnection
