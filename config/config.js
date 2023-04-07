@@ -4,5 +4,6 @@ module.exports = {
   HOST: process.env.HOST,
   PORT: process.env.PORT,
   MONGO_URI: process.env.MONGO_URI,
-  SECRET_TOKEN: process.env.SECRET_TOKEN
+  SECRET_TOKEN: process.env.SECRET_TOKEN,
+  ENDPOINT: process.env.ENDPOINT
 }

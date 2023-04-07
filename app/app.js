@@ -1,4 +1,3 @@
-'use strict'
 const bodyParser = require('body-parser')
 const express = require('express')
 const CONFIG = require('../config/config')
@@ -14,8 +13,11 @@ const MovieDB = require('node-themoviedb')
 const ProductRoute = require('./routes/productRoutes')
 const PlayerRoute = require('./routes/playerLeaderboardRoutes')
 
+const Parser = require('rss-parser')
+const axios = require('axios')
+
 // ES6 Style
-// import MovieDB from 'node-themoviedb';
+// import MovieDB from 'node-themoviedb'
 
 const mdb = new MovieDB(CONFIG.API_KEY, 'en-US')
 const App = express()
@@ -27,6 +29,14 @@ App.use(express.urlencoded({ extended: false }))
 
 // ejecutar el bobyParser para poder enviar en formato json desde un Formulario en en sitio web asi aqui
 App.use(bodyParser.urlencoded({ extended: true }))
+
+const whitelist = ['http://localhost:3000', 'https://joboardeveloper.netlify.app', 'http://localhost:3001']
+
+const corsOptions = {
+  origin: whitelist,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 App.use(cors())
 
@@ -51,33 +61,68 @@ App.use((req, res, next) => {
   return next()
 })
 
-// App.get("/", async (req, res, next) => {
-//   const lista = await fetchDataMoviesFromList();
-//   //res.json(data);
-//   // let movies = lista.data.items;
-//   let movies = await getMovieForApi(lista);
-//   let listmovies = [...movies];
+// App.get('/', async (req, res, next) => {
+//   const lista = await fetchDataMoviesFromList()
+//   //res.json(data)
+//   // let movies = lista.data.items
+//   let movies = await getMovieForApi(lista)
+//   let listmovies = [...movies]
 
-//   const movies_string = JSON.stringify(movies);
+//   const movies_string = JSON.stringify(movies)
 
-//   res.render("index", {
+//   res.render('index', {
 //     movies: listmovies,
 //     movies_string,
 
-//   });
-//   res.render("index")
-// });
+//   })
+//   res.render('index')
+// })
 
 App.get('/', async (req, res, next) => {
-  res.render('index')
+  console.log(App.locals.titulo)
+  res.render('index ')
 })
 
 App.get('/api/v1/getMovies', async (req, res, next) => {
   const data = await fetchDataMoviesFromList()
-  // console.log(data);
+  // console.log(data)
   const movies = await getMovieForApi(data)
 
   res.json(movies)
+})
+
+App.get('/api/v1/getRemoteJobs', async (req, res, next) => {
+  const api = 'https://remoteok.com/api?tag=Javascript'
+  let data
+  try {
+    const response = await axios.get(api)
+    data = response
+
+    console.log(data)
+
+    // res.send(data)
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+  return data
+})
+
+App.get('/api/v1/getJobs', async (req, res, next) => {
+  console.log('V1 PARSER')
+
+  const parser = new Parser()
+  // let feed = await parser.parseURL('https://www.reddit.com/.rss')
+  try {
+    const rss = await parser.parseURL('https://pe.indeed.com/rss?q=developer&l=Peru')
+
+    res.json(rss)
+  } catch (error) {
+    console.log('error: ' + error)
+  }
+  // rss?.items.forEach(i => {
+  //   console.log(i.title + ':' + i.link)
+  // })
 })
 
 const getMovieForApi = async (lista) => {
@@ -86,7 +131,6 @@ const getMovieForApi = async (lista) => {
 
     const listmovies = []
     const size = movies.length
-    console.log(size)
     for (let i = 0; i < size; i++) {
       const datamovie = movies[i]
       const newMovie = new Movie(
@@ -117,7 +161,7 @@ const fetchDataMoviesFromList = async () => {
       }
     }
     const movie = await mdb.list.getDetails(args)
-    // console.log(movie);
+    // console.log(movie)
     /*
       {
         data: Object. Parsed json data of response
